@@ -4,6 +4,9 @@
     Author     : informatica
 --%>
 
+<%@page import="org.lisandrojimenez.webapp.model.Producto"%>
+<%@page import="org.lisandrojimenez.webapp.model.Producto"%>
+<%@page import ="java.util.List" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -47,29 +50,22 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col">Nombre del producto</th>
+                    <th scope="col">Precio del producto</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Precio</th>
                 </tr>
             </thead>
             <tbody>
+                <% List<Producto> productos = (List)request.getAttribute("productos");%>
+                <%for(Producto producto: productos){%>
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                    <th><%=producto.getProductoId()%></th>
+                    <th><%=producto.getNombreProducto()%></th>
+                    <th><%=producto.getDescripcionProducto()%></th>
+                    <th><%=producto.getPrecioProducto()%></th>
                 </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                </tr>
+                <%}%>
             </tbody>
         </table>
     </div>
