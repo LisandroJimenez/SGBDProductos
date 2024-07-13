@@ -46,7 +46,7 @@
         </div>
     </nav>
     <div>
-        <table class="table">
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -57,16 +57,17 @@
                 </tr>
             </thead>
             <tbody>
-                <% List<Producto> productos = (List)request.getAttribute("productos");%>
-                <%for(Producto producto: productos){%>
-                <tr>
-                    <th><%=producto.getProductoId()%></th>
-                    <th><%=producto.getNombreProducto()%></th>
-                    <th><%=producto.getDescripcionProducto()%></th>
-                    <th><%=producto.getPrecioProducto()%></th>
-                </tr>
-                <%}%>
-            </tbody>
+                    <% List<Producto> productos = (List)request.getAttribute("productos");%>
+                    <%for(Producto producto:productos){%>
+                    <tr>
+                        <th scope="row"><%=producto.getProductoId()%></th>
+                        <th scope="row"><%=producto.getNombreProducto()%></th>
+                        <th scope="row"><%=producto.getMarcaProducto()%></th>
+                        <th scope="row"><%=producto.getDescripcionProducto()%></th>
+                        <th scope="row"><%=producto.getPrecioProducto()%></th>
+                    </tr>
+                        <%}%>
+                </tbody>
         </table>
     </div>
 
