@@ -35,7 +35,7 @@
                             <a class="nav-link " aria-current="page" href="../index.jsp">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../formulario-productos/formulario-productos.jsp">Formulario</a>
+                            <a class="nav-link" href="./formulario-productos/formulario-productos.jsp">Formulario</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" href="./lista-productos.jsp">Lista de Productos</a>
@@ -57,17 +57,17 @@
                 </tr>
             </thead>
             <tbody>
-                    <% List<Producto> productos = (List)request.getAttribute("productos");%>
-                    <%for(Producto producto:productos){%>
-                    <tr>
-                        <th scope="row"><%=producto.getProductoId()%></th>
-                        <th scope="row"><%=producto.getNombreProducto()%></th>
-                        <th scope="row"><%=producto.getMarcaProducto()%></th>
-                        <th scope="row"><%=producto.getDescripcionProducto()%></th>
-                        <th scope="row"><%=producto.getPrecioProducto()%></th>
-                    </tr>
-                        <%}%>
-                </tbody>
+                <% List<Producto> productos = (List) request.getAttribute("productos");%>
+                <%for (Producto producto : productos) {%>
+                <tr>
+                    <th scope="row"><%=producto.getProductoId()%></th>
+                    <th scope="row"><%=producto.getNombreProducto()%></th>
+                    <th scope="row"><%=producto.getMarcaProducto()%></th>
+                    <th scope="row"><%=producto.getDescripcionProducto()%></th>
+                    <th scope="row"><%=producto.getPrecioProducto()%></th>
+                </tr>
+                <%}%>
+            </tbody>
         </table>
     </div>
 

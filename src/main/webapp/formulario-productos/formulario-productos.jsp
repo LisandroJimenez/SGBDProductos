@@ -29,35 +29,24 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a class="nav-link " aria-current="page" href="./index.jsp">Inicio</a>
+                            <a class="nav-link " aria-current="page" href="/SGBDProductos/index.jsp">Inicio</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" href=".formulario-productos.jsp">Formulario</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./lista-productos/lista-productos.jsp">Lista de Productos</a>
+                            <a class="nav-link" href="./producto-servlet">Lista de Productos</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </nav>
-    <div class="container text-center ">
-        <%ArrayList<String> datosProductos = (ArrayList) request.getAttribute("datosProductos");%>
-        <%if (datosProductos != null) {%>
-        
-        <% for (String producto : datosProductos) {%>
-        <ul class="mt-3" >
-            <li  ><%=producto%> </li>
-        </ul>
-        <%}%>
-        <h1>Producto Enviado con exito</h1>
-        
-        <%}%>
-        <% String mensaje = (String) request.getAttribute("mensaje");%>
-        <% if (mensaje != null) {%>
-        <h1 class="text-danger"><%=mensaje%></h1>
-        <%}%>
+    <div class="container text-center">
+        <% String mensaje = (String) request.getAttribute("mensaje"); %>
+        <% if (mensaje != null) { %>
+            <h1 class="<%= mensaje.equals("Producto enviado exitosamente!") ? "text-success" : "text-danger" %>"><%= mensaje %></h1>
+        <% } %>
     </div>
 
     <div class="container w-100">

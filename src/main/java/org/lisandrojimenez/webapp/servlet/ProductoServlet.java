@@ -48,20 +48,39 @@ public class ProductoServlet extends HttpServlet {
         datosProductos.add(precioProducto);
 
         String msj = null;
-        if (nombreProducto.isEmpty()) {
+         if (nombreProducto == null || nombreProducto.isEmpty()) {
             msj = "Campos incompletos, favor de llenar el campo del nombre";
-        } else if (marcaProducto.isEmpty()) {
+        } else if (marcaProducto == null || marcaProducto.isEmpty()) {
             msj = "Campos incompletos, favor de llenar el campo de la marca";
-        } else if (descripcionProducto.isEmpty()) {
+        } else if (descripcionProducto == null || descripcionProducto.isEmpty()) {
             msj = "Campos incompletos, favor de llenar el campo de la descripción";
-        } else if (precioProducto.isEmpty()) {
-            msj = "Campos incompletos!, favor de llenar el campo del precio";
+        } else if (precioProducto == null || precioProducto.isEmpty()) {
+            msj = "Campos incompletos, favor de llenar el campo del precio";
+        } else {
+            msj = "Producto enviado exitosamente!";
         }
         req.setAttribute("mensaje", msj);
 
         req.setAttribute("datosProductos", datosProductos);
 
         getServletContext().getRequestDispatcher("/formulario-productos/formulario-productos.jsp").forward(req, resp);
+        String path = req.getPathInfo();
+        
+        if (path == null || path.equals("/")){
+            agregarProducto(req, resp);
+        }else{
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+        
+        }
+    }
+    
+    public void agregarProducto(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException{
+        String nombre = req.getParameter("nombreProducto"), marca = req.getParameter("marcaProducto"), descripcion = req.getParameter("descripcionProducto");
+        double precio = Double.parseDouble(req.getParameter("precioProducto"));
+        
+        ps.agregarProducto(new Producto(nombre,marca,descripcion,precio));
+        
+        resp.sendRedirect(req.getContextPath() + "/");
     }
 
 }
